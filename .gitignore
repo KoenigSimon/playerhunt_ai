@@ -2,6 +2,12 @@
 tests/
 api_key.txt
 
+*.bat
+*.exe
+pyvenv.cfg
+activate
+Activate.ps1
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
