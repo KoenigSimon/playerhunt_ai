@@ -37,3 +37,8 @@ class GameData:
         self.player_heading = Vector3()
         self.self_heading = Vector3()
         self.noise_position = Vector3()
+
+
+#global variables
+game_data: GameData
+messages: any

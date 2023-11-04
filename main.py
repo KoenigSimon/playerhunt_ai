@@ -3,6 +3,7 @@ import websockets
 
 import gpt_interface as gpt
 import command_structure as cmd
+import data_model as data
 import game_logic as logic
 
 async def on_connect(websocket):
@@ -17,14 +18,19 @@ async def handler(websocket, path):
     await on_connect(websocket)
     try:
         async for message in websocket:
-            print(f"Received message: {message}")
-            action = logic.parse_input_data(message)
+            print(f"Received data: {message}")
+            if message.startswith("#gpt"):
+                prompt = message.removeprefix("#gpt").strip()
+                data.messages.append({"role": "user", "content": prompt})
+                answer = gpt.consult_ai(data.messages)
+                data.messages.append(answer)
+                response = answer['content']
+            else:
+                print(f"Parsing input message: {message}")
+                target_field = logic.parse_input_data(message)
+                # Generate a response (you can modify this logic as needed)
+                response = f"Parsed Data: {data.game_data.__getattribute__(target_field)}"
 
-
-            # Generate a response (you can modify this logic as needed)
-            response = f"Hello! You said: {message}"
-
-            # Send the response back to the client
             await websocket.send(response)
 
     except websockets.ConnectionClosed:
@@ -32,15 +38,16 @@ async def handler(websocket, path):
 
 if __name__ == '__main__':
     # Prepare GPT messaging backend
-    global messages 
-    messages = cmd.init_command_structure()
-    gpt.consult_ai()
-
-    # Init game logic
+    print("Preparing GPT Backend")
+    data.messages = cmd.init_command_structure()
     
+    # Init game logic
+    print("Preparing Game Logic and Parsers")
+    data.game_data = data.GameData()
 
     # Start the WebSocket server
-    start_server = websockets.serve(handler, "localhost", 6969)
+    print("Starting Server")
+    start_server = websockets.serve(handler, "0.0.0.0", 6969)
 
     asyncio.get_event_loop().run_until_complete(start_server)
     asyncio.get_event_loop().run_forever()
