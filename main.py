@@ -18,18 +18,9 @@ async def handler(websocket, path):
     await on_connect(websocket)
     try:
         async for message in websocket:
-            print(f"Received data: {message}")
-            if message.startswith("#gpt"):
-                prompt = message.removeprefix("#gpt").strip()
-                data.messages.append({"role": "user", "content": prompt})
-                answer = gpt.consult_ai(data.messages)
-                data.messages.append(answer)
-                response = answer['content']
-            else:
-                print(f"Parsing input message: {message}")
-                target_field = logic.parse_input_data(message)
-                # Generate a response (you can modify this logic as needed)
-                response = f"Parsed Data: {data.game_data.__getattribute__(target_field)}"
+            print(f"Received Data: {message}")
+            target_field = logic.parse_input_data(message)
+            response = f"Parsed Data: {data.game_data.__getattribute__(target_field)}"
 
             await websocket.send(response)
 

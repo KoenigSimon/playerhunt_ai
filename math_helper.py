@@ -10,3 +10,11 @@ def magnitude(vector: data.Vector3):
     return math.sqrt(math.pow(vector.x, 2)+math.pow(vector.y, 2)+math.pow(vector.z, 2))
 def magnitude(vector: data.Vector2):
     return math.sqrt(math.pow(vector.x, 2)+math.pow(vector.y, 2))
+
+def position_to_grid(position: data.Vector3, cell_size: int):
+    #stub
+    pass
+
+def heading_dir(player_forward: data.Vector3, self_position: data.Vector3):
+    #stub
+    pass
