@@ -1,4 +1,4 @@
-import data_structs as data
+import data_model as data
 import math
 
 def distance(a: data.Vector3, b: data.Vector3):
