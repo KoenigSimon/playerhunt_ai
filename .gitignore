@@ -3,6 +3,9 @@ tests/
 api_key.txt
 
 *.bat
+!install.bat
+!run.bat
+
 *.exe
 pyvenv.cfg
 activate
