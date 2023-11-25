@@ -29,7 +29,7 @@ def condition_concretizer(abstract_condition: str):
         "NOISE_POSITION": [ {"noise_position", "cell_size", math.position_to_grid} ],
         "SELF_POSITION": [ {"self_pos", "cell_size", math.position_to_grid} ],
         "PLAYER_DISTANCE": [ {"player_pos", "self_pos", math.distance} ],
-        "LOOK_DIRECTION": [ {"player_heading", "self_pos", math.heading_dir} ],
+        "LOOK_DIRECTION": [ {"player_heading", "self_pos", math.look_at_factor} ],
     }
     return condition_lookup_dict[abstract_condition]
 
