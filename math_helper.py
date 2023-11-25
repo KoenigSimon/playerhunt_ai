@@ -13,6 +13,7 @@ def magnitude(vector: data.Vector2):
 
 def position_to_grid(position: data.Vector3, cell_size: data.Vector2) -> tuple:
     #currently center aligned
+    if cell_size.x == 0 or cell_size.y == 0: return (-1, -1)
     grid_pos_x = round(position.x / cell_size.x)
     grid_pos_y = round(position.z / cell_size.y)
     # TODO: out of bounds check via play area
