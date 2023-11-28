@@ -3,6 +3,8 @@ You you can use the previous queries to adjust your behaviour. When you charge, 
 When you sneak closely to the player, they cannot hear you.
 """
 
+# TODO: configuration: set speeds for CHARGE / SNEAK / RUN etc
+
 query_opts = {
     #unconditional events
     "player_confrontation": "You see the player and the player sees you. Do you CHARGE at the player to catch them and win or RUN away?",
@@ -15,7 +17,7 @@ query_opts = {
     #conditional choices
     "investigate_noise": "You hear a noise at #NOISE_POSITION#, you are at #SELF_POSITION#. You can move one sqare, do you move UP, DOWN, LEFT or RIGHT?",
     "proximity_decision": "You are #PLAYER_DISTANCE# to the player, do you try to SNEAK closer to see the player, HIDE until you can see the player, or CHARGE at them to catch them?",
-    "attack_decision": "You are #PLAYER_DISTANCE# to the player, the player #LOOK_DIRECTION#, do you SNEAK after the player and quietly follow them, or do you JUMP at the player to win?",  
+    "attack_decision": "You are #PLAYER_DISTANCE# to the player, the player #LOOK_AT_STATE#, do you SNEAK after the player and quietly follow them, or do you JUMP at the player to win?",  
 }
 
 def init_command_structure():

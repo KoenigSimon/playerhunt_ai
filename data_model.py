@@ -7,7 +7,7 @@ class Vector3:
     def __init__(self) -> None:
         self.x = self.y = self.z = 0.0
     def __str__(self) -> str:
-        return str(self.x) + " " + str(self.y) + " " + str(self.z)
+        return f"[{str(self.x)};{str(self.y)};{str(self.z)}]"
     def __eq__(self, __value: object) -> bool:
         if self.x == self.y == self.z == __value: return True
         else: return False
@@ -20,7 +20,7 @@ class Vector2:
     def __init__(self) -> None:
         self.x = self.y = 0.0
     def __str__(self) -> str:
-        return str(self.x) + " " + str(self.y)
+        return f"[{str(self.x)};{str(self.y)}]"
     def __eq__(self, __value: object) -> bool:
         if self.x == self.y == __value: return True
         else: return False
@@ -39,23 +39,32 @@ class Vector3_List:
     pass
 
 class GameData:
+    # config data
+    restart: bool = False       # input for restart
+    action_state: int = 0       # output for debug
+    lookat_direct: float = 0.84 # input for agent fov
+    lookat_periph: float = 0.5  # input for agent fov
+    distance_near: float = 5.0  # input for distance
+    distance_mid: float = 10.0  # input for distance
+    distance_far: float = 20.0  # input for distance
+
     # base data
-    player_pos: Vector3
+    target_pos: Vector3
     self_pos: Vector3
     play_area: Vector2 # x,y amount columns/rows
     cell_size: Vector2 # x,y size per grid cell
-    player_heading: Vector3
+    target_heading: Vector3
     self_heading: Vector3
 
     # action data 
     noise_position: Vector3
 
     def __init__(self) -> None:
-        self.player_pos = Vector3()
+        self.target_pos = Vector3()
         self.self_pos = Vector3()
         self.play_area = Vector2()
         self.cell_size = Vector2()
-        self.player_heading = Vector3()
+        self.target_heading = Vector3()
         self.self_heading = Vector3()
         self.noise_position = Vector3()
 
