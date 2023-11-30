@@ -20,15 +20,15 @@ def position_to_grid(position: data.Vector3, cell_size: data.Vector2) -> tuple:
     return (grid_pos_x, grid_pos_y)
 
 def look_at_factor(self_heading: data.Vector3, target_heading: data.Vector3) -> float:
-    self_heading = self_heading % 360
-    target_heading = target_heading % 360
+    self_heading = heading_angle(self_heading) % 360
+    target_heading = heading_angle(target_heading) % 360
     diff = abs(self_heading - target_heading)
     if diff > 180:
         diff = 360 - diff
     similarity = 1 - (diff / 180)
     return similarity
 
-def heading_angle(vec: data.Vector3):
+def heading_angle(vec: data.Vector3) -> float:
     angle_rad = math.atan2(vec.y, vec.x)
     angle_deg = math.degrees(angle_rad)
     if angle_deg < 0:
