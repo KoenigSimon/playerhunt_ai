@@ -5,24 +5,25 @@ import gpt_interface as gpt
 import command_structure as cmd
 import data_model as data
 import game_logic as logic
+import math_helper as math
 
 async def on_connect(websocket):
-    """
-    This method is called whenever a new client connects.
-    """
     print(f"New client connected: {websocket.remote_address}")
-    # You can add more logic here if you want, like sending a welcome message:
-    # await websocket.send("Welcome to the WebSocket server!")
 
 async def handler(websocket, path):
     await on_connect(websocket)
     try:
         async for message in websocket:
-            print(f"Received Data: {message}")
+            # Data ingest
+            #print(f"Received Data: {message}")
             target_field = logic.parse_input_data(message)
-            response = f"Parsed Data: {data.game_data.__getattribute__(target_field)}"
+            response = f"Parsed {target_field}: {data.game_data.__getattribute__(target_field)}"
+            response = math.position_to_grid(data.game_data.target_pos, data.game_data.cell_size)
+            response = f"[{response[0]};{response[1]}]"
 
-            await websocket.send(response)
+            # TODO: send selected action state for debug purposes
+
+            await websocket.send(str(response))
 
     except websockets.ConnectionClosed:
         print("Connection closed")
