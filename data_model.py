@@ -39,16 +39,16 @@ class Vector3_List:
     pass
 
 class GameData:
-    # config data -> to game
-    action_state: int = 0       # output for debug
     # config data <- from game
-    restart: bool = False       # input for restart
+    restart: bool = False       # TODO: input for restart
     gpt_model_tier: int = 0     # 0: gpt 3 turbo / 1: gpt 4 turbo
     lookat_direct: float = 0.84 # input for agent fov
     lookat_periph: float = 0.5  # input for agent fov
     distance_near: float = 5.0  # input for distance
     distance_mid: float = 10.0  # input for distance
     distance_far: float = 20.0  # input for distance
+    # config data -> to game
+    action_state: int = 0       # TODO: output for debug
 
     # base data
     target_pos: Vector3
@@ -73,3 +73,4 @@ class GameData:
 #global variables
 game_data: GameData
 messages: any
+console_state: []

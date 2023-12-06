@@ -41,6 +41,9 @@ def look_at_state(self_head: data.Vector3, target_head: data.Vector3) -> str:
 def props(cls):   
     return [i for i in cls.__dict__.keys() if i[:1] != '_']
 
+def all_props(cls):   
+    return [i for i in cls.__dir__() if i[:1] != '_']
+
 #message supports only one field per message, keep that in mind
 def parse_input_data(message: str):
     for name in props(data.game_data):
