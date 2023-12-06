@@ -6,8 +6,8 @@ model_tier = [
     "gpt-4-1106-preview"
 ]
 
-def consult_ai(messages, model=model_tier[0]):
-    chat = openai.ChatCompletion.create( 
+async def consult_ai(messages, model=model_tier[0]):
+    chat = await openai.ChatCompletion.create( 
         model=model, messages=messages 
     )
         
