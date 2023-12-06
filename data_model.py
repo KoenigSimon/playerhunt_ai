@@ -42,6 +42,7 @@ class GameData:
     # config data
     restart: bool = False       # input for restart
     action_state: int = 0       # output for debug
+    gpt_model_tier: int = 0     # gpt 3 turbo / gpt 4 turbo
     lookat_direct: float = 0.84 # input for agent fov
     lookat_periph: float = 0.5  # input for agent fov
     distance_near: float = 5.0  # input for distance
