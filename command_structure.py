@@ -31,6 +31,9 @@ def init_command_structure():
     ]
     return messages
 
+def add_user_message(message_str: str):
+    data.messages.append({"role": "user", "content": message_str})
+
 def limit_context(messages, count):
     init_message = messages.pop(0) #keep init message
     return [init_message] + messages[-count:]

@@ -1,4 +1,5 @@
 import re
+import time
 
 import data_model as data
 import command_structure as cmd
@@ -46,11 +47,12 @@ def all_props(cls):
 
 #message supports only one field per message, keep that in mind
 def parse_input_data(message: str):
+    data.console_state[1] = "Last data parsed: "+ time.strftime("%H:%M:%S")
     for name in props(data.game_data):
         if message.startswith(name):
             raw_data = message.removeprefix(name).strip()
             data.game_data.__getattribute__(name).parse(raw_data)
-            return name
+            return name    
     print(f"Failed to parse input data for message: {message}")
     return None
 

@@ -41,6 +41,7 @@ class Vector3_List:
 class GameData:
     # config data <- from game
     restart: bool = False       # TODO: input for restart
+    ai_prompting_enabled: bool = True
     gpt_model_tier: int = 0     # 0: gpt 3 turbo / 1: gpt 4 turbo
     lookat_direct: float = 0.84 # input for agent fov
     lookat_periph: float = 0.5  # input for agent fov
@@ -48,7 +49,7 @@ class GameData:
     distance_mid: float = 10.0  # input for distance
     distance_far: float = 20.0  # input for distance
     # config data -> to game
-    action_state: int = 0       # TODO: output for debug
+    action_state: str = "idle"       # TODO: output for debug
 
     # base data
     target_pos: Vector3
